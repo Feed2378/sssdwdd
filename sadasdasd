@@ -1,0 +1,38 @@
+import UIKit
+
+class ViewController: UIViewController {
+    
+    @IBOutlet weak var calorieLabel: UILabel!
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var subtractButton: UIButton!
+    
+    var currentCalories: Int = 0 {
+        didSet {
+            calorieLabel.text = "\(currentCalories)"
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Additional setup code
+        
+        // Set initial calorie count
+        currentCalories = 0
+        
+        // Add action to the "Add" button
+        addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+        
+        // Add action to the "Subtract" button
+        subtractButton.addTarget(self, action: #selector(subtractButtonTapped), for: .touchUpInside)
+    }
+    
+    @IBAction func addButtonTapped(_ sender: UIButton) {
+        currentCalories += 1
+    }
+    
+    @IBAction func subtractButtonTapped(_ sender: UIButton) {
+        if currentCalories > 0 {
+            currentCalories -= 1
+        }
+    }
+}
